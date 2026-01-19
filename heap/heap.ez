@@ -37,49 +37,63 @@ const Variant struct {
 //===============================
 // INTERNAL USE ONLY FUCNTIONS
 //===============================
-private do make_string_variant(s string) -> Variant {
-     temp G = new(Variant)
-     G.stringValue = s
-     G.intValue = 0
-     G.floatValue = 0.0
-     G.boolValue = false
-     G.type = {1, 0, 0, 0}
-     return G
+// private do make_string_variant(s string) -> Variant {
+//      temp G = new(Variant)
+//      G.stringValue = s
+//      // G.intValue = 0
+//      // G.floatValue = 0.0
+//      // G.boolValue = false
+//      G.type = {1, 0, 0, 0}
+//      return G
+//  }
+
+
+ private do heap_make_variant(strVal string = "",intVal int = 0,floatVal float = 0.0,boolVal bool = false)-> Variant{
+ 	temp G = new(Variant)
+
+   	G.stringValue = strVal
+  	G.intValue = intVal
+   	G.floatValue = floatVal
+    G.boolValue = boolVal
+    // G.type = {1, 0, 0, 0}
+
+    return G
  }
 
- // Create a Generic containing an int
- private do make_int_variant(index int) -> Variant {
-     temp G = new(Variant)
-     G.stringValue = ""
-     G.intValue = index
-     G.floatValue = 0.0
-     G.boolValue = false
-     G.type = {0, 1, 0, 0}
-     return G
- }
+ // Create a Variant containing an int
+ // private do make_int_variant(index int) -> Variant {
+ //     temp G = new(Variant)
+ //     // G.stringValue = ""
+ //     G.intValue = index
+ //     // G.floatValue = 0.0
+ //     // G.boolValue = false
+ //     G.type = {0, 1, 0, 0}
+ //     return G
+ // }
 
- // Create a Generic containing a float
- private do make_float_variant(f float) -> Variant {
-     temp G = new(Variant)
-     G.stringValue = ""
-     G.intValue = 0
-     G.floatValue = f
-     G.boolValue = false
-     G.type = {0, 0, 1, 0}
-     return G
- }
+ // Create a Variant containing a float
+ // private do make_float_variant(f float) -> Variant {
+ //     temp G = new(Variant)
+ //     // G.stringValue = ""
+ //     // G.intValue = 0
+ //     G.floatValue = f
+ //     // G.boolValue = false
+ //     G.type = {0, 0, 1, 0}
+ //     return G
+ // }
 
  // Create a Variant containing a bool
- private do make_bool_variant(b bool) -> Variant {
-     temp V = new(Variant)
-     G.stringValue = ""
-     G.intValue = 0
-     G.floatValue = 0.0
-     G.boolValue = b
-     G.type = {0, 0, 0, 1}
-     return G
- }
+ // private do make_bool_variant(b bool) -> Variant {
+ //     temp V = new(Variant)
+ //     // G.stringValue = ""
+ //     // G.intValue = 0
+ //     // G.floatValue = 0.0
+ //     G.boolValue = b
+ //     G.type = {0, 0, 0, 1}
+ //     return G
+ // }
 
+//Creates a new HeapItem with passed in priority(p) and Variant(v)
 private do make_new_heap_item(p int, v Variant) -> HeapItem {
 	temp item = new(HeapItem)
 
@@ -181,38 +195,46 @@ private do heap_bubble_down(&heap [HeapItem], &index int) {
 //USER FACING CORE MODULE FUCNTIONS
 //===============================
 
-//Pushes a string value onto the heap with given priority
-//Lower priority numbers come out first (min-heap)
-do heap_push_string(&heap [HeapItem], priority int, value string) {
-    temp g = make_string_variant(value)
-    temp item = make_new_heap_item(priority, g)
+//Pushe passed in string value onto the passed heap with given priority(p)
+//Lower priority numbers come out first
+//
+
+do heap_push(&heap [HeapItem], p int, v Variant){
+	temp item = make_new_heap_item(p, v)
     arrays.append(heap, item)
     heap_bubble_up(heap, len(heap) - 1)
 }
 
-//Push an int value onto the heap with given priority
-do heap_push_int(&heap [HeapItem], priority int, value int) {
-    temp g = make_int_variant(value)
-    temp item = make_new_heap_item(priority, g)
-    arrays.append(heap, item)
-    heap_bubble_up(heap, len(heap) - 1)
-}
+// do heap_push_string(&heap [HeapItem], p int, value string) {
+//     temp v = make_string_variant(value)
+//     temp item = make_new_heap_item(p, v)
+//     arrays.append(heap, item)
+//     heap_bubble_up(heap, len(heap) - 1)
+// }
 
-//Pushs a float value onto the heap with given priority
-do heap_push_float(&heap [HeapItem], priority int, value float) {
-    temp g = make_float_variant(value)
-    temp item = make_new_heap_item(priority, g)
-    arrays.append(heap, item)
-    heap_bubble_up(heap, len(heap) - 1)
-}
+// //Push passed in int value onto the passed in heap with given priority(P)
+// do heap_push_int(&heap [HeapItem], p int, value int) {
+//     temp v = make_int_variant(value)
+//     temp item = make_new_heap_item(p, v)
+//     arrays.append(heap, item)
+//     heap_bubble_up(heap, len(heap) - 1)
+// }
 
-//Push a bool value onto the heap with given priority
-do heap_push_bool(&heap [HeapItem], priority int, value bool) {
-    temp g = make_bool_variant(value)
-    temp item = make_new_heap_item(priority, g)
-    arrays.append(heap, item)
-    heap_bubble_up(heap, len(heap) - 1)
-}
+// //Push passed in float value onto the passed in heap with given priority(P)
+// do heap_push_float(&heap [HeapItem], p int, value float) {
+//     temp v = make_float_variant(value)
+//     temp item = make_new_heap_item(priority, v)
+//     arrays.append(heap, item)
+//     heap_bubble_up(heap, len(heap) - 1)
+// }
+
+// //Push passed in bool value onto the passed in heap with given priority(P)
+// do heap_push_bool(&heap [HeapItem], p int, value bool) {
+//     temp v = make_bool_variant(value)
+//     temp item = make_new_heap_item(p, v)
+//     arrays.append(heap, item)
+//     heap_bubble_up(heap, len(heap) - 1)
+// }
 
 //Pops the highest-priority (lowest number) item from the passed in heap
 //Returns the HeapItem that was removed/popped
@@ -323,4 +345,8 @@ do heap_get_float(item HeapItem) -> float {
 // Extract bool value from HeapItem
 do heap_get_bool(item HeapItem) -> bool {
     return item.value.boolValue
+}
+
+do main(){
+	heap_push(Heap,1,heap_make_variant(1))
 }
