@@ -1,0 +1,71 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: style
+* Module Desc: ANSI terminal color and text styling utilities for CLI applications
+* All functions and constants are prefixed with 'style' all constants
+*
+* File Name: text.ez
+* File Desc: Text styling functions for bold, dim, italic, underline, and other text effects
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+module style
+
+const STYLE_RESET string = "\x1b[0m"
+const STYLE_BOLD string = "\x1b[1m"
+const STYLE_DIM string = "\x1b[2m"
+const STYLE_ITALIC string = "\x1b[3m"
+const STYLE_UNDERLINE string = "\x1b[4m"
+const STYLE_REVERSE string = "\x1b[7m"
+const STYLE_STRIKE string = "\x1b[9m"
+
+
+//Takes the passed in text(t) wraps in bold ANSI escape code and returns
+do style_make_bold(&t string) -> string {
+    t = "${STYLE_BOLD}${t}${STYLE_RESET}"
+	return t
+}
+
+//Takes the passed in text(t) wraps in dim ANSI escape code and returns
+do style_make_dim(&t string) -> string {
+    t = "${STYLE_DIM}${t}${STYLE_RESET}"
+	return t
+}
+
+//Takes the passed in text(t) wraps in italic ANSI escape code and returns
+do style_make_italic(&t string) -> string {
+    t = "${STYLE_ITALIC}${t}${STYLE_RESET}"
+	return t
+}
+
+//Takes the passed in text(t) wraps in underline ANSI escape code and returns
+do style_make_underline(&t string) -> string {
+    t = "${STYLE_UNDERLINE}${t}${STYLE_RESET}"
+	return t
+}
+
+//Takes the passed in text(t) wraps in reverse ANSI escape code and returns
+//Note: swaps t's color with the background color. DOES NOT reveres the text string
+do style_make_reverse(&t string) -> string {
+    t = "${STYLE_REVERSE}${t}${STYLE_RESET}"
+	return t
+}
+
+//Takes the passed in text(t) wraps in strick ANSI escape code and returns
+//Note: Strikes or puts the line through the text string
+do style_make_strike(&t string) -> string {
+    t = "${STYLE_STRIKE}${t}${STYLE_RESET}"
+	return t
+}
+
+//Resets text.
+do style_reset() -> string {
+	return STYLE_RESET
+}
