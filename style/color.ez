@@ -1,0 +1,17 @@
+  /*
+  * EZ-Modules: A collection of helpful modules for the EZ programming language
+  * Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+  *
+  * Module Name: style
+  * Module Desc: ANSI terminal color and text styling utilities for CLI applications
+  *
+  * File Name: color.ez
+  * File Desc: Foreground and background color functions for terminal output
+  *
+  * Author: Marshall A Burns
+  * GitHub: @SchoolyB
+  * Repo: https://github.com/SchoolyB/EZ-Modules
+  *
+  * Copyright (c) 2026 Marshall Burns
+  * Licensed under the MIT License
+  */
