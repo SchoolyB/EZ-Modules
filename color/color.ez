@@ -1,0 +1,62 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: color
+* Module Desc:
+*
+*
+* File Name: color.ez
+* File Desc: Color code converter and generator
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+module color
+
+import @std
+
+do main(){
+	std.println(color_byte_to_hex(173))
+	std.println(color_rgb_to_hex(122,11,1))
+}
+
+do color_byte_to_hex(b u8) -> (char, char) {
+	temp high = b/16
+	temp low = b % 16
+
+	return HexidecimalMap[high], HexidecimalMap[low]
+}
+
+do color_rgb_to_hex(r,g,b u8) -> string {
+    temp rHigh, rLow = color_byte_to_hex(r)
+    temp gHigh, gLow = color_byte_to_hex(g)
+    temp bHigh, bLow = color_byte_to_hex(b)
+
+    return "${rHigh}${rLow}${gHigh}${gLow}${bHigh}${bLow}"
+}
+
+
+//Todo: move me???
+const HexidecimalMap map[u8:char] = {
+	0:'0',
+	1:'1',
+	2:'2',
+	3:'3',
+	4:'4',
+	5:'5',
+	6:'6',
+	7:'7',
+	8:'8',
+	9:'9',
+	10:'A',
+	11:'B',
+	12:'C',
+	13:'D',
+	14:'E',
+	15:'F'
+}
