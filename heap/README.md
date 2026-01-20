@@ -65,9 +65,12 @@ Result: Returns 1, heap is now [2, 5, 3]
 ### Creating a Heap
 
 ```ez
-import "./heap"
+Simply copy the `heap` directory into your ptojects structure
+Then, in the file you plan on using the `heap` modules functions or constants write the following at the top of said file:
 
-temp tasks [heap.HeapItem] = {}
+import "relative/path/to/heap"
+
+temp yourHeapVariable [heap.HeapItem]
 ```
 
 ### Pushing Items
