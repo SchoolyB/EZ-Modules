@@ -1,0 +1,41 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: constants.ez
+* File Desc: Internal and user facing API constant values used in calculating units of measurment
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+module units
+
+const CM_PER_METER float = 100.0
+const METERS_PER_KM float = 1000.0
+
+const INCHES_PER_FOOT float = 12.0
+const FEET_PER_YARD float = 3.0
+const FEET_PER_MILE float = 5280.0
+const YARDS_PER_MILE float = 1760.0
+
+const CM_PER_INCH float = 2.54
+const METERS_PER_INCH float = 0.0254
+const CM_PER_FOOT float = 30.48
+const METERS_PER_FOOT float = 0.3048
+const METERS_PER_YARD float = 0.9144
+const METERS_PER_MILE float = 1609.34
+const KM_PER_MILE float = 1.60934
+
+const INCHES_PER_CM float = 0.393701
+const INCHES_PER_METER float = 39.3701
+const FEET_PER_METER float = 3.28084
+const YARDS_PER_METER float = 1.09361
+const MILES_PER_KM float = 0.621371
+const FEET_PER_KM float = 3280.84

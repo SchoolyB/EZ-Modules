@@ -1,0 +1,125 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: length.ez
+* File Desc: Functions for converting between length units (miles, km, feet, meters, inches, cm)
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+module units
+
+
+//Metric to metric conversion functions
+do convert_centimeter_to_meter(val float) -> float {
+	return val / CM_PER_METER
+}
+
+do convert_meter_to_centimeter(val float) -> float {
+	return val * CM_PER_METER
+}
+
+do convert_meter_to_kilometer(val float) -> float {
+	return val / METERS_PER_KM
+}
+
+do convert_kilometer_to_meter(val float) -> float {
+	return val * METERS_PER_KM
+}
+
+
+//Imperial to imperial conversion functions
+do convert_inch_to_feet(val float) -> float {
+	return val / INCHES_PER_FOOT
+}
+
+do convert_foot_to_inch(val float) -> float {
+	return val * INCHES_PER_FOOT
+}
+
+do convert_feet_to_yard(val float) -> float {
+	return val / FEET_PER_YARD
+}
+
+do convert_yard_to_feet(val float) -> float {
+	return val * FEET_PER_YARD
+}
+
+do convert_yard_to_mile(val float) -> float {
+	return val / YARDS_PER_MILE
+}
+
+do convert_mile_to_yard(val float) -> float {
+	return val * YARDS_PER_MILE
+}
+
+do convert_feet_to_mile(val float) -> float {
+	return val / FEET_PER_MILE
+}
+
+do convert_mile_to_feet(val float) -> float {
+	return val * FEET_PER_MILE
+}
+
+//Imperial to metric conversions
+do convert_inch_to_centimeter(val float) -> float {
+	return val * CM_PER_INCH
+}
+
+do convert_inch_to_meter(val float) -> float {
+	return val * METERS_PER_INCH
+}
+
+do convert_feet_to_meter(val float) -> float {
+	return val * METERS_PER_FOOT
+}
+
+do convert_feet_to_centimeter(val float) -> float {
+	return val * CM_PER_FOOT
+}
+
+do convert_yard_to_meter(val float) -> float {
+	return val * METERS_PER_YARD
+}
+
+do convert_mile_to_kilometer(val float) -> float {
+	return val * KM_PER_MILE
+}
+
+do convert_mile_to_meter(val float) -> float {
+	return val * METERS_PER_MILE
+}
+
+
+//Metric to imperial conversions
+do convert_centimeter_to_inch(val float) -> float {
+	return val * INCHES_PER_CM
+}
+
+do convert_meter_to_inch(val float) -> float {
+	return val * INCHES_PER_METER
+}
+
+do convert_meter_to_feet(val float) -> float {
+	return val * FEET_PER_METER
+}
+
+do convert_meter_to_yard(val float) -> float {
+	return val * YARDS_PER_METER
+}
+
+do convert_kilometer_to_mile(val float) -> float {
+	return val * MILES_PER_KM
+}
+
+do convert_kilometer_to_feet(val float) -> float {
+	return val * FEET_PER_KM
+}
