@@ -136,7 +136,7 @@ temp count = heap.heap_size(tasks)     // Get item count
 | `heap_get_float(item) -> float` | Extract float value |
 | `heap_get_bool(item) -> bool` | Extract bool value |
 
-## Use Cases
+## Potential Use Cases
 
 - **Task scheduling**: Always run highest priority task next
 - **Event simulation**: Process events in time order
