@@ -3,11 +3,10 @@
 * Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
 *
 * Module Name: color
-* Module Desc:
-*
+* Module Desc: Utilities for working with colors and converting between color formats
 *
 * File Name: color.ez
-* File Desc: Color code converter and generator
+* File Desc: Contains functions for converting between RGB, hex, and byte color representations
 *
 * Author: Marshall A Burns
 * GitHub: @SchoolyB
@@ -18,13 +17,9 @@
 */
 module color
 
-import @std
+import @maps
 
-do main(){
-	std.println(color_byte_to_hex(173))
-	std.println(color_rgb_to_hex(122,11,1))
-}
-
+//Converts the passed in byte(b)passed as type u8...to two hexidecimal values as type char
 do color_byte_to_hex(b u8) -> (char, char) {
 	temp high = b/16
 	temp low = b % 16
@@ -32,6 +27,27 @@ do color_byte_to_hex(b u8) -> (char, char) {
 	return HexidecimalMap[high], HexidecimalMap[low]
 }
 
+//Takes 2 hexidecimal values as type char(high, low) and returns the byte equivalent as type u8
+do color_hex_to_byte(high, low char) -> u8 {
+    temp keys = maps.keys(HexidecimalMap)
+
+    temp k u8
+    temp highBytes u8
+    temp lowBytes u8
+
+    for_each k in keys {
+        if HexidecimalMap[k] == high {
+            highBytes = k
+        }
+        if HexidecimalMap[k] == low {
+            lowBytes = k
+        }
+    }
+
+    return highBytes * 16 + lowBytes
+}
+
+//Converts 3 passed in u8 values(r,g,b) and returns the hexidecimal equivalant as a string
 do color_rgb_to_hex(r,g,b u8) -> string {
     temp rHigh, rLow = color_byte_to_hex(r)
     temp gHigh, gLow = color_byte_to_hex(g)
@@ -40,9 +56,16 @@ do color_rgb_to_hex(r,g,b u8) -> string {
     return "${rHigh}${rLow}${gHigh}${gLow}${bHigh}${bLow}"
 }
 
+//Takes the passed full hexideciaml value(hex) of type string and returns 3 byte representations(r,g,b)
+do color_hex_to_rgb(hex string) -> (u8,u8,u8){
+     temp r = color_hex_to_byte(hex[0], hex[1])
+     temp g = color_hex_to_byte(hex[2], hex[3])
+     temp b = color_hex_to_byte(hex[4], hex[5])
 
-//Todo: move me???
-const HexidecimalMap map[u8:char] = {
+     return r, g, b
+ }
+
+private const HexidecimalMap map[u8:char] = {
 	0:'0',
 	1:'1',
 	2:'2',
