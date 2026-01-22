@@ -1,0 +1,115 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: speed.ez
+* File Desc: Functions for converting between speed units (m/s, km/h, mph, ft/s, knots)
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+
+module units
+
+/*********************************
+METRIC TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
+do convert_meters_per_second_to_kilometers_per_hour(val float) -> float {
+	return val * KMH_PER_MPS
+}
+
+do convert_kilometers_per_hour_to_meters_per_second(val float) -> float {
+	return val * MPS_PER_KMH
+}
+
+
+/*********************************
+IMPERIAL TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_miles_per_hour_to_feet_per_second(val float) -> float {
+	return val * FPS_PER_MPH
+}
+
+do convert_feet_per_second_to_miles_per_hour(val float) -> float {
+	return val * MPH_PER_FPS
+}
+
+
+/*********************************
+IMPERIAL TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
+do convert_miles_per_hour_to_kilometers_per_hour(val float) -> float {
+	return val * KMH_PER_MPH
+}
+
+do convert_miles_per_hour_to_meters_per_second(val float) -> float {
+	return val * MPS_PER_MPH
+}
+
+do convert_feet_per_second_to_meters_per_second(val float) -> float {
+	return val * MPS_PER_FPS
+}
+
+do convert_feet_per_second_to_kilometers_per_hour(val float) -> float {
+	return val * MPS_PER_FPS * KMH_PER_MPS
+}
+
+
+/*********************************
+METRIC TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_kilometers_per_hour_to_miles_per_hour(val float) -> float {
+	return val * MPH_PER_KMH
+}
+
+do convert_meters_per_second_to_miles_per_hour(val float) -> float {
+	return val * MPH_PER_MPS
+}
+
+do convert_meters_per_second_to_feet_per_second(val float) -> float {
+	return val * FPS_PER_MPS
+}
+
+do convert_kilometers_per_hour_to_feet_per_second(val float) -> float {
+	return val * MPS_PER_KMH * FPS_PER_MPS
+}
+
+
+/*********************************
+KNOT CONVERSION FUNCTIONS
+*********************************/
+
+do convert_knot_to_kilometers_per_hour(val float) -> float {
+	return val * KMH_PER_KNOT
+}
+
+do convert_kilometers_per_hour_to_knot(val float) -> float {
+	return val * KNOTS_PER_KMH
+}
+
+do convert_knot_to_miles_per_hour(val float) -> float {
+	return val * MPH_PER_KNOT
+}
+
+do convert_miles_per_hour_to_knot(val float) -> float {
+	return val * KNOTS_PER_MPH
+}
+
+do convert_knot_to_meters_per_second(val float) -> float {
+	return val * MPS_PER_KNOT
+}
+
+do convert_meters_per_second_to_knot(val float) -> float {
+	return val * KNOTS_PER_MPS
+}

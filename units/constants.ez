@@ -154,3 +154,26 @@ const CUPS_PER_LITER float = 4.22675
 const PINTS_PER_LITER float = 2.11338
 const QUARTS_PER_LITER float = 1.05669
 const GALLONS_PER_LITER float = 0.264172
+
+/*********************************
+SPEED RELATED CONSTANTS
+*********************************/
+const KMH_PER_MPS float = 3.6
+const MPS_PER_KMH float = 0.277778
+
+const FPS_PER_MPH float = 1.46667
+const MPH_PER_FPS float = 0.681818
+
+const KMH_PER_MPH float = 1.60934
+const MPH_PER_KMH float = 0.621371
+const MPS_PER_MPH float = 0.44704
+const MPH_PER_MPS float = 2.23694
+const MPS_PER_FPS float = 0.3048
+const FPS_PER_MPS float = 3.28084
+
+const KMH_PER_KNOT float = 1.852
+const KNOTS_PER_KMH float = 0.539957
+const MPH_PER_KNOT float = 1.15078
+const KNOTS_PER_MPH float = 0.868976
+const MPS_PER_KNOT float = 0.514444
+const KNOTS_PER_MPS float = 1.94384
