@@ -1,0 +1,184 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: stack
+* Module Desc: A LIFO (Last In, First Out) stack data structure implementation
+* Functions are accessed via the module name (e.g., stack.push_string)
+*
+* File Name: stack.ez
+* File Desc: Core stack data structure with push, pop, peek operations
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+module stack
+import @arrays
+
+const StackItem struct {
+	value Variant
+}
+
+const Variant struct {
+	stringValue string
+	intValue int
+	floatValue float
+	boolValue bool
+	type [int]
+}
+
+//===============================
+// INTERNAL USE ONLY FUNCTIONS
+//===============================
+
+private do make_variant(strVal string = "", intVal int = 0, floatVal float = 0.0, boolVal bool = false, typeFlag [int] = {0, 0, 0, 0}) -> Variant {
+	temp v = new(Variant)
+	v.stringValue = strVal
+	v.intValue = intVal
+	v.floatValue = floatVal
+	v.boolValue = boolVal
+	v.type = typeFlag
+	return v
+}
+
+private do make_new_stack_item(v Variant) -> StackItem {
+	temp item = new(StackItem)
+	item.value = v
+	return copy(item)
+}
+
+
+//===============================
+// USER FACING CORE MODULE FUNCTIONS
+//===============================
+
+//Push a string value onto the stack
+do push_string(&stack [StackItem], value string) {
+	temp v = make_variant(strVal: value, typeFlag: {1, 0, 0, 0})
+	temp item = make_new_stack_item(v)
+	arrays.append(stack, item)
+}
+
+//Push an int value onto the stack
+do push_int(&stack [StackItem], value int) {
+	temp v = make_variant(intVal: value, typeFlag: {0, 1, 0, 0})
+	temp item = make_new_stack_item(v)
+	arrays.append(stack, item)
+}
+
+//Push a float value onto the stack
+do push_float(&stack [StackItem], value float) {
+	temp v = make_variant(floatVal: value, typeFlag: {0, 0, 1, 0})
+	temp item = make_new_stack_item(v)
+	arrays.append(stack, item)
+}
+
+//Push a bool value onto the stack
+do push_bool(&stack [StackItem], value bool) {
+	temp v = make_variant(boolVal: value, typeFlag: {0, 0, 0, 1})
+	temp item = make_new_stack_item(v)
+	arrays.append(stack, item)
+}
+
+//Pop the top item from the stack (LIFO - last pushed item comes out first)
+//Returns the StackItem that was removed
+do pop(&stack [StackItem]) -> StackItem {
+	if len(stack) == 0 {
+		return new(StackItem)
+	}
+
+	temp last_index = len(stack) - 1
+	temp result = stack[last_index]
+	arrays.pop(stack)
+	return result
+}
+
+//Peek at the top item on the stack without removing it
+//Returns the StackItem at the top
+do peek(stack [StackItem]) -> StackItem {
+	if len(stack) == 0 {
+		return new(StackItem)
+	}
+
+	return stack[len(stack) - 1]
+}
+
+//Check if the stack is empty
+do is_empty(stack [StackItem]) -> bool {
+	return len(stack) == 0
+}
+
+//Get the number of items on the stack
+do size(stack [StackItem]) -> int {
+	return len(stack)
+}
+
+//Clear all items from the stack
+do clear(&stack [StackItem]) {
+	as_long_as len(stack) > 0 {
+		arrays.pop(stack)
+	}
+}
+
+
+//===============================
+// USER FACING HELPER FUNCTIONS
+//===============================
+
+//Check what type the StackItem's value is
+//Returns: 0 = string, 1 = int, 2 = float, 3 = bool, -1 = unknown
+do get_type(item StackItem) -> (int, string) {
+	if item.value.type[0] == 1 {
+		return 0, "string"
+	}
+	if item.value.type[1] == 1 {
+		return 1, "int"
+	}
+	if item.value.type[2] == 1 {
+		return 2, "float"
+	}
+	if item.value.type[3] == 1 {
+		return 3, "bool"
+	}
+	return -1, "unknown"
+}
+
+do item_is_string(item StackItem) -> bool {
+	return item.value.type[0] == 1
+}
+
+do item_is_int(item StackItem) -> bool {
+	return item.value.type[1] == 1
+}
+
+do item_is_float(item StackItem) -> bool {
+	return item.value.type[2] == 1
+}
+
+do item_is_bool(item StackItem) -> bool {
+	return item.value.type[3] == 1
+}
+
+//Extract string value from StackItem
+do get_string(item StackItem) -> string {
+	return item.value.stringValue
+}
+
+//Extract int value from StackItem
+do get_int(item StackItem) -> int {
+	return item.value.intValue
+}
+
+//Extract float value from StackItem
+do get_float(item StackItem) -> float {
+	return item.value.floatValue
+}
+
+//Extract bool value from StackItem
+do get_bool(item StackItem) -> bool {
+	return item.value.boolValue
+}
