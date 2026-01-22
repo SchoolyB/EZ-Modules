@@ -1,0 +1,152 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: data.ez
+* File Desc: Functions for converting between data storage units (bytes, KB, MB, GB, TB, PB)
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+
+module units
+
+/*********************************
+DECIMAL (SI) CONVERSION FUNCTIONS
+(1 KB = 1000 bytes)
+*********************************/
+
+do convert_byte_to_kilobyte(val float) -> float {
+	return val / BYTES_PER_KB
+}
+
+do convert_kilobyte_to_byte(val float) -> float {
+	return val * BYTES_PER_KB
+}
+
+do convert_kilobyte_to_megabyte(val float) -> float {
+	return val / KB_PER_MB
+}
+
+do convert_megabyte_to_kilobyte(val float) -> float {
+	return val * KB_PER_MB
+}
+
+do convert_megabyte_to_gigabyte(val float) -> float {
+	return val / MB_PER_GB
+}
+
+do convert_gigabyte_to_megabyte(val float) -> float {
+	return val * MB_PER_GB
+}
+
+do convert_gigabyte_to_terabyte(val float) -> float {
+	return val / GB_PER_TB
+}
+
+do convert_terabyte_to_gigabyte(val float) -> float {
+	return val * GB_PER_TB
+}
+
+do convert_terabyte_to_petabyte(val float) -> float {
+	return val / TB_PER_PB
+}
+
+do convert_petabyte_to_terabyte(val float) -> float {
+	return val * TB_PER_PB
+}
+
+
+/*********************************
+BINARY (IEC) CONVERSION FUNCTIONS
+(1 KiB = 1024 bytes)
+*********************************/
+
+do convert_byte_to_kibibyte(val float) -> float {
+	return val / BYTES_PER_KIB
+}
+
+do convert_kibibyte_to_byte(val float) -> float {
+	return val * BYTES_PER_KIB
+}
+
+do convert_kibibyte_to_mebibyte(val float) -> float {
+	return val / KIB_PER_MIB
+}
+
+do convert_mebibyte_to_kibibyte(val float) -> float {
+	return val * KIB_PER_MIB
+}
+
+do convert_mebibyte_to_gibibyte(val float) -> float {
+	return val / MIB_PER_GIB
+}
+
+do convert_gibibyte_to_mebibyte(val float) -> float {
+	return val * MIB_PER_GIB
+}
+
+do convert_gibibyte_to_tebibyte(val float) -> float {
+	return val / GIB_PER_TIB
+}
+
+do convert_tebibyte_to_gibibyte(val float) -> float {
+	return val * GIB_PER_TIB
+}
+
+do convert_tebibyte_to_pebibyte(val float) -> float {
+	return val / TIB_PER_PIB
+}
+
+do convert_pebibyte_to_tebibyte(val float) -> float {
+	return val * TIB_PER_PIB
+}
+
+
+/*********************************
+DECIMAL TO BINARY CONVERSION FUNCTIONS
+*********************************/
+
+do convert_kilobyte_to_kibibyte(val float) -> float {
+	return val * BYTES_PER_KB / BYTES_PER_KIB
+}
+
+do convert_megabyte_to_mebibyte(val float) -> float {
+	return val * KB_PER_MB * BYTES_PER_KB / BYTES_PER_KIB / KIB_PER_MIB
+}
+
+do convert_gigabyte_to_gibibyte(val float) -> float {
+	return val * BYTES_PER_GB / BYTES_PER_GIB
+}
+
+do convert_terabyte_to_tebibyte(val float) -> float {
+	return val * BYTES_PER_TB / BYTES_PER_TIB
+}
+
+
+/*********************************
+BINARY TO DECIMAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_kibibyte_to_kilobyte(val float) -> float {
+	return val * BYTES_PER_KIB / BYTES_PER_KB
+}
+
+do convert_mebibyte_to_megabyte(val float) -> float {
+	return val * BYTES_PER_MIB / BYTES_PER_MB
+}
+
+do convert_gibibyte_to_gigabyte(val float) -> float {
+	return val * BYTES_PER_GIB / BYTES_PER_GB
+}
+
+do convert_tebibyte_to_terabyte(val float) -> float {
+	return val * BYTES_PER_TIB / BYTES_PER_TB
+}
