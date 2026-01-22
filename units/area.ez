@@ -15,12 +15,13 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-module units
 
+module units
 import @math
 
-
-//Shape area calculation functions
+/*********************************
+SHAPE AREA CALCULATION FUNCTIONS
+*********************************/
 
 //Calculates the area of a rectangle with the passed in length(l) and width(w)
 do calculate_rectangle_area(l, w float) -> float {
@@ -63,7 +64,9 @@ do calculate_rhombus_area(d1, d2 float) -> float {
 }
 
 
-//Metric to metric conversion functions
+/*********************************
+METRIC TO METRIC CONVERSION FUNCTIONS
+*********************************/
 
 do convert_sq_centimeter_to_sq_meter(val float) -> float {
 	return val / SQ_CM_PER_SQ_METER
@@ -90,7 +93,9 @@ do convert_hectare_to_sq_meter(val float) -> float {
 }
 
 
-//Imperial to imperial conversion functions
+/*********************************
+IMPERIAL TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
 
 do convert_sq_inch_to_sq_foot(val float) -> float {
 	return val / SQ_INCHES_PER_SQ_FOOT
@@ -125,7 +130,9 @@ do convert_sq_mile_to_acre(val float) -> float {
 }
 
 
-//Imperial to metric conversion functions
+/*********************************
+IMPERIAL TO METRIC CONVERSION FUNCTIONS
+*********************************/
 
 do convert_sq_inch_to_sq_centimeter(val float) -> float {
 	return val * SQ_CM_PER_SQ_INCH
@@ -152,7 +159,9 @@ do convert_sq_mile_to_sq_kilometer(val float) -> float {
 }
 
 
-//Metric to imperial conversion functions
+/*********************************
+METRIC TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
 
 do convert_sq_centimeter_to_sq_inch(val float) -> float {
 	return val * SQ_INCHES_PER_SQ_CM

@@ -15,9 +15,12 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
+
 module units
 
-//Length Related Constants
+/*********************************
+LENGTH RELATED CONSTANTS
+*********************************/
 const CM_PER_METER float = 100.0
 const METERS_PER_KM float = 1000.0
 
@@ -41,7 +44,9 @@ const YARDS_PER_METER float = 1.09361
 const MILES_PER_KM float = 0.621371
 const FEET_PER_KM float = 3280.84
 
-//Area Related Constants
+/*********************************
+AREA RELATED CONSTANTS
+*********************************/
 const SQ_CM_PER_SQ_METER float = 10000.0
 const SQ_METERS_PER_SQ_KM float = 1000000.0
 
@@ -63,3 +68,26 @@ const SQ_YARDS_PER_SQ_METER float = 1.19599
 const ACRES_PER_SQ_METER float = 0.000247105
 const SQ_MILES_PER_SQ_KM float = 0.386102
 const ACRES_PER_HECTARE float = 2.47105
+
+/*********************************
+WEIGHT RELATED CONSTANTS
+*********************************/
+const MG_PER_GRAM float = 1000.0
+const GRAMS_PER_KG float = 1000.0
+const KG_PER_METRIC_TON float = 1000.0
+
+const OZ_PER_LB float = 16.0
+const LB_PER_STONE float = 14.0
+const LB_PER_SHORT_TON float = 2000.0
+
+const GRAMS_PER_OZ float = 28.3495
+const GRAMS_PER_LB float = 453.592
+const KG_PER_LB float = 0.453592
+const KG_PER_STONE float = 6.35029
+const KG_PER_SHORT_TON float = 907.185
+
+const OZ_PER_GRAM float = 0.035274
+const LB_PER_KG float = 2.20462
+const LB_PER_GRAM float = 0.00220462
+const STONES_PER_KG float = 0.157473
+const SHORT_TONS_PER_KG float = 0.00110231

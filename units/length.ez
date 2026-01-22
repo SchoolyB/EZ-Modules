@@ -15,10 +15,13 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
+
 module units
 
+/*********************************
+METRIC TO METRIC CONVERSION FUNCTIONS
+*********************************/
 
-//Metric to metric conversion functions
 do convert_centimeter_to_meter(val float) -> float {
 	return val / CM_PER_METER
 }
@@ -36,7 +39,10 @@ do convert_kilometer_to_meter(val float) -> float {
 }
 
 
-//Imperial to imperial conversion functions
+/*********************************
+IMPERIAL TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
 do convert_inch_to_feet(val float) -> float {
 	return val / INCHES_PER_FOOT
 }
@@ -69,7 +75,11 @@ do convert_mile_to_feet(val float) -> float {
 	return val * FEET_PER_MILE
 }
 
-//Imperial to metric conversions
+
+/*********************************
+IMPERIAL TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
 do convert_inch_to_centimeter(val float) -> float {
 	return val * CM_PER_INCH
 }
@@ -99,7 +109,10 @@ do convert_mile_to_meter(val float) -> float {
 }
 
 
-//Metric to imperial conversions
+/*********************************
+METRIC TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
 do convert_centimeter_to_inch(val float) -> float {
 	return val * INCHES_PER_CM
 }

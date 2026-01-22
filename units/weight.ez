@@ -1,0 +1,142 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: weight.ez
+* File Desc: Functions for converting between weight units
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+
+module units
+
+/*********************************
+METRIC TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
+do convert_milligram_to_gram(val float) -> float {
+	return val / MG_PER_GRAM
+}
+
+do convert_gram_to_milligram(val float) -> float {
+	return val * MG_PER_GRAM
+}
+
+do convert_gram_to_kilogram(val float) -> float {
+	return val / GRAMS_PER_KG
+}
+
+do convert_kilogram_to_gram(val float) -> float {
+	return val * GRAMS_PER_KG
+}
+
+do convert_kilogram_to_metric_ton(val float) -> float {
+	return val / KG_PER_METRIC_TON
+}
+
+do convert_metric_ton_to_kilogram(val float) -> float {
+	return val * KG_PER_METRIC_TON
+}
+
+
+/*********************************
+IMPERIAL TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_ounce_to_pound(val float) -> float {
+	return val / OZ_PER_LB
+}
+
+do convert_pound_to_ounce(val float) -> float {
+	return val * OZ_PER_LB
+}
+
+do convert_pound_to_stone(val float) -> float {
+	return val / LB_PER_STONE
+}
+
+do convert_stone_to_pound(val float) -> float {
+	return val * LB_PER_STONE
+}
+
+do convert_pound_to_short_ton(val float) -> float {
+	return val / LB_PER_SHORT_TON
+}
+
+do convert_short_ton_to_pound(val float) -> float {
+	return val * LB_PER_SHORT_TON
+}
+
+
+/*********************************
+IMPERIAL TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
+do convert_ounce_to_gram(val float) -> float {
+	return val * GRAMS_PER_OZ
+}
+
+do convert_ounce_to_kilogram(val float) -> float {
+	return val * GRAMS_PER_OZ / GRAMS_PER_KG
+}
+
+do convert_pound_to_gram(val float) -> float {
+	return val * GRAMS_PER_LB
+}
+
+do convert_pound_to_kilogram(val float) -> float {
+	return val * KG_PER_LB
+}
+
+do convert_stone_to_kilogram(val float) -> float {
+	return val * KG_PER_STONE
+}
+
+do convert_short_ton_to_kilogram(val float) -> float {
+	return val * KG_PER_SHORT_TON
+}
+
+do convert_short_ton_to_metric_ton(val float) -> float {
+	return val * KG_PER_SHORT_TON / KG_PER_METRIC_TON
+}
+
+
+/*********************************
+METRIC TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_gram_to_ounce(val float) -> float {
+	return val * OZ_PER_GRAM
+}
+
+do convert_gram_to_pound(val float) -> float {
+	return val * LB_PER_GRAM
+}
+
+do convert_kilogram_to_ounce(val float) -> float {
+	return val * GRAMS_PER_KG * OZ_PER_GRAM
+}
+
+do convert_kilogram_to_pound(val float) -> float {
+	return val * LB_PER_KG
+}
+
+do convert_kilogram_to_stone(val float) -> float {
+	return val * STONES_PER_KG
+}
+
+do convert_kilogram_to_short_ton(val float) -> float {
+	return val * SHORT_TONS_PER_KG
+}
+
+do convert_metric_ton_to_short_ton(val float) -> float {
+	return val * KG_PER_METRIC_TON * SHORT_TONS_PER_KG
+}
