@@ -77,21 +77,21 @@ temp yourHeapVariable [heap.HeapItem]
 
 ```ez
 // Push with priority and value (lower priority = comes out first)
-heap.heap_push_string(tasks, 1, "Urgent task")
-heap.heap_push_string(tasks, 5, "Low priority task")
-heap.heap_push_string(tasks, 3, "Medium task")
-heap.heap_push_int(tasks, 2, 42)
+heap.push_string(tasks, 1, "Urgent task")
+heap.push_string(tasks, 5, "Low priority task")
+heap.push_string(tasks, 3, "Medium task")
+heap.push_int(tasks, 2, 42)
 ```
 
 ### Popping Items
 
 ```ez
-temp item = heap.heap_pop(tasks)  // Returns "Urgent task" (priority 1)
+temp item = heap.pop(tasks)  // Returns "Urgent task" (priority 1)
 
 // Extract the value
-if heap.heap_item_is_string(item) {
-    temp value = heap.heap_get_string(item)
-    temp priority = heap.heap_get_priority(item)
+if heap.item_is_string(item) {
+    temp value = heap.get_string(item)
+    temp priority = heap.get_priority(item)
     println("Got: ${value} with priority ${priority}")
 }
 ```
@@ -99,9 +99,9 @@ if heap.heap_item_is_string(item) {
 ### Other Operations
 
 ```ez
-temp top = heap.heap_peek(tasks)      // View top without removing
-temp empty = heap.heap_is_empty(tasks) // Check if empty
-temp count = heap.heap_size(tasks)     // Get item count
+temp top = heap.peek(tasks)      // View top without removing
+temp empty = heap.is_empty(tasks) // Check if empty
+temp count = heap.size(tasks)     // Get item count
 ```
 
 ## API Reference
@@ -109,32 +109,32 @@ temp count = heap.heap_size(tasks)     // Get item count
 ### Push Functions
 | Function | Description |
 |----------|-------------|
-| `heap_push_string(&heap, priority, value)` | Push a string value |
-| `heap_push_int(&heap, priority, value)` | Push an int value |
-| `heap_push_float(&heap, priority, value)` | Push a float value |
-| `heap_push_bool(&heap, priority, value)` | Push a bool value |
+| `push_string(&heap, priority, value)` | Push a string value |
+| `push_int(&heap, priority, value)` | Push an int value |
+| `push_float(&heap, priority, value)` | Push a float value |
+| `push_bool(&heap, priority, value)` | Push a bool value |
 
 ### Core Operations
 | Function | Description |
 |----------|-------------|
-| `heap_pop(&heap) -> HeapItem` | Remove and return highest priority item |
-| `heap_peek(heap) -> HeapItem` | View highest priority item without removing |
-| `heap_is_empty(heap) -> bool` | Check if heap is empty |
-| `heap_size(heap) -> int` | Get number of items |
+| `pop(&heap) -> HeapItem` | Remove and return highest priority item |
+| `peek(heap) -> HeapItem` | View highest priority item without removing |
+| `is_empty(heap) -> bool` | Check if heap is empty |
+| `size(heap) -> int` | Get number of items |
 
 ### Value Extraction
 | Function | Description |
 |----------|-------------|
-| `heap_get_priority(item) -> int` | Get item's priority |
-| `heap_get_type(item) -> int` | Get type (0=string, 1=int, 2=float, 3=bool) |
-| `heap_item_is_string(item) -> bool` | Check if value is string |
-| `heap_item_is_int(item) -> bool` | Check if value is int |
-| `heap_item_is_float(item) -> bool` | Check if value is float |
-| `heap_item_is_bool(item) -> bool` | Check if value is bool |
-| `heap_get_string(item) -> string` | Extract string value |
-| `heap_get_int(item) -> int` | Extract int value |
-| `heap_get_float(item) -> float` | Extract float value |
-| `heap_get_bool(item) -> bool` | Extract bool value |
+| `get_priority(item) -> int` | Get item's priority |
+| `get_type(item) -> int` | Get type (0=string, 1=int, 2=float, 3=bool) |
+| `item_is_string(item) -> bool` | Check if value is string |
+| `item_is_int(item) -> bool` | Check if value is int |
+| `item_is_float(item) -> bool` | Check if value is float |
+| `item_is_bool(item) -> bool` | Check if value is bool |
+| `get_string(item) -> string` | Extract string value |
+| `get_int(item) -> int` | Extract int value |
+| `get_float(item) -> float` | Extract float value |
+| `get_bool(item) -> bool` | Extract bool value |
 
 ## Potential Use Cases
 
