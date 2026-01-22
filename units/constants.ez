@@ -17,6 +17,7 @@
 */
 module units
 
+//Length Related Constants
 const CM_PER_METER float = 100.0
 const METERS_PER_KM float = 1000.0
 
@@ -39,3 +40,26 @@ const FEET_PER_METER float = 3.28084
 const YARDS_PER_METER float = 1.09361
 const MILES_PER_KM float = 0.621371
 const FEET_PER_KM float = 3280.84
+
+//Area Related Constants
+const SQ_CM_PER_SQ_METER float = 10000.0
+const SQ_METERS_PER_SQ_KM float = 1000000.0
+
+const SQ_INCHES_PER_SQ_FOOT float = 144.0
+const SQ_FEET_PER_SQ_YARD float = 9.0
+const SQ_FEET_PER_ACRE float = 43560.0
+const ACRES_PER_SQ_MILE float = 640.0
+
+const SQ_CM_PER_SQ_INCH float = 6.4516
+const SQ_METERS_PER_SQ_FOOT float = 0.092903
+const SQ_METERS_PER_SQ_YARD float = 0.836127
+const SQ_METERS_PER_ACRE float = 4046.86
+const SQ_KM_PER_SQ_MILE float = 2.58999
+const HECTARES_PER_ACRE float = 0.404686
+
+const SQ_INCHES_PER_SQ_CM float = 0.155
+const SQ_FEET_PER_SQ_METER float = 10.7639
+const SQ_YARDS_PER_SQ_METER float = 1.19599
+const ACRES_PER_SQ_METER float = 0.000247105
+const SQ_MILES_PER_SQ_KM float = 0.386102
+const ACRES_PER_HECTARE float = 2.47105

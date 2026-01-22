@@ -1,0 +1,179 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: area.ez
+* File Desc: Functions for calculating shape areas and converting between area units (sq ft, sq m, acres, hectares)
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+module units
+
+import @math
+
+
+//Shape area calculation functions
+
+//Calculates the area of a rectangle with the passed in length(l) and width(w)
+do calculate_rectangle_area(l, w float) -> float {
+	return l * w
+}
+
+//Calculates the area of a square with the passed in side's(s) length
+do calculate_square_area(s float) -> float {
+	return s * s
+}
+
+//Calculates the area of a triangle with the passed base(b) and hieght(h)
+do calculate_triangle_area(b, h float) -> float {
+	return b * h / 2
+}
+
+
+//Calculates the area of a circle with the passed radius(r)
+do calculate_circle_area(r float) -> float {
+	return math.PI * r * r
+}
+
+//Calculates the area of a parallelogram with the passed base(b) and heigh(h)
+do calculate_parallelogram_area(b, h float) -> float {
+	return b * h
+}
+
+//Calculates the area of a trapezoid with the passed base1(b1), base2(b2) and heigh(h)
+do calculate_trapezoid_area(b1, b2, h float) -> float {
+	return (b1 + b2) / 2 * h
+}
+
+//Calculates the area of an ellipse with the passed radiouses(r1, r2)
+do calculate_ellipse_area(r1, r2 float) -> float {
+	return math.PI * r1 * r2
+}
+
+do calculate_rhombus_area(d1, d2 float) -> float {
+	return d1 * d2 / 2
+}
+
+
+//Metric to metric conversion functions
+
+do convert_sq_centimeter_to_sq_meter(val float) -> float {
+	return val / SQ_CM_PER_SQ_METER
+}
+
+do convert_sq_meter_to_sq_centimeter(val float) -> float {
+	return val * SQ_CM_PER_SQ_METER
+}
+
+do convert_sq_meter_to_sq_kilometer(val float) -> float {
+	return val / SQ_METERS_PER_SQ_KM
+}
+
+do convert_sq_kilometer_to_sq_meter(val float) -> float {
+	return val * SQ_METERS_PER_SQ_KM
+}
+
+do convert_sq_meter_to_hectare(val float) -> float {
+	return val / SQ_METERS_PER_ACRE * HECTARES_PER_ACRE
+}
+
+do convert_hectare_to_sq_meter(val float) -> float {
+	return val * SQ_METERS_PER_ACRE / HECTARES_PER_ACRE
+}
+
+
+//Imperial to imperial conversion functions
+
+do convert_sq_inch_to_sq_foot(val float) -> float {
+	return val / SQ_INCHES_PER_SQ_FOOT
+}
+
+do convert_sq_foot_to_sq_inch(val float) -> float {
+	return val * SQ_INCHES_PER_SQ_FOOT
+}
+
+do convert_sq_foot_to_sq_yard(val float) -> float {
+	return val / SQ_FEET_PER_SQ_YARD
+}
+
+do convert_sq_yard_to_sq_foot(val float) -> float {
+	return val * SQ_FEET_PER_SQ_YARD
+}
+
+do convert_sq_foot_to_acre(val float) -> float {
+	return val / SQ_FEET_PER_ACRE
+}
+
+do convert_acre_to_sq_foot(val float) -> float {
+	return val * SQ_FEET_PER_ACRE
+}
+
+do convert_acre_to_sq_mile(val float) -> float {
+	return val / ACRES_PER_SQ_MILE
+}
+
+do convert_sq_mile_to_acre(val float) -> float {
+	return val * ACRES_PER_SQ_MILE
+}
+
+
+//Imperial to metric conversion functions
+
+do convert_sq_inch_to_sq_centimeter(val float) -> float {
+	return val * SQ_CM_PER_SQ_INCH
+}
+
+do convert_sq_foot_to_sq_meter(val float) -> float {
+	return val * SQ_METERS_PER_SQ_FOOT
+}
+
+do convert_sq_yard_to_sq_meter(val float) -> float {
+	return val * SQ_METERS_PER_SQ_YARD
+}
+
+do convert_acre_to_sq_meter(val float) -> float {
+	return val * SQ_METERS_PER_ACRE
+}
+
+do convert_acre_to_hectare(val float) -> float {
+	return val * HECTARES_PER_ACRE
+}
+
+do convert_sq_mile_to_sq_kilometer(val float) -> float {
+	return val * SQ_KM_PER_SQ_MILE
+}
+
+
+//Metric to imperial conversion functions
+
+do convert_sq_centimeter_to_sq_inch(val float) -> float {
+	return val * SQ_INCHES_PER_SQ_CM
+}
+
+do convert_sq_meter_to_sq_foot(val float) -> float {
+	return val * SQ_FEET_PER_SQ_METER
+}
+
+do convert_sq_meter_to_sq_yard(val float) -> float {
+	return val * SQ_YARDS_PER_SQ_METER
+}
+
+do convert_sq_meter_to_acre(val float) -> float {
+	return val * ACRES_PER_SQ_METER
+}
+
+do convert_hectare_to_acre(val float) -> float {
+	return val * ACRES_PER_HECTARE
+}
+
+do convert_sq_kilometer_to_sq_mile(val float) -> float {
+	return val * SQ_MILES_PER_SQ_KM
+}
