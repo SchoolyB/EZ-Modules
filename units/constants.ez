@@ -97,6 +97,7 @@ DATA RELATED CONSTANTS
 *********************************/
 
 // Decimal (SI) units - base 1000
+// Reference: https://en.wikipedia.org/wiki/International_System_of_Units
 const BYTES_PER_KB float = 1000.0
 const KB_PER_MB float = 1000.0
 const MB_PER_GB float = 1000.0
@@ -109,6 +110,7 @@ const BYTES_PER_TB float = 1000000000000.0
 const BYTES_PER_PB float = 1000000000000000.0
 
 // Binary (IEC) units - base 1024
+// Reference: https://en.wikipedia.org/wiki/International_Electrotechnical_Commission
 const BYTES_PER_KIB float = 1024.0
 const KIB_PER_MIB float = 1024.0
 const MIB_PER_GIB float = 1024.0
