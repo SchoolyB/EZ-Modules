@@ -129,3 +129,28 @@ const CELSIUS_TO_FAHRENHEIT_MULTIPLIER float = 1.8
 const FAHRENHEIT_TO_CELSIUS_MULTIPLIER float = 0.555556
 const FAHRENHEIT_OFFSET float = 32.0
 const KELVIN_OFFSET float = 273.15
+
+/*********************************
+VOLUME RELATED CONSTANTS
+*********************************/
+const ML_PER_LITER float = 1000.0
+const LITERS_PER_CUBIC_METER float = 1000.0
+
+const FL_OZ_PER_CUP float = 8.0
+const CUPS_PER_PINT float = 2.0
+const PINTS_PER_QUART float = 2.0
+const QUARTS_PER_GALLON float = 4.0
+const FL_OZ_PER_GALLON float = 128.0
+
+const ML_PER_FL_OZ float = 29.5735
+const ML_PER_CUP float = 236.588
+const LITERS_PER_PINT float = 0.473176
+const LITERS_PER_QUART float = 0.946353
+const LITERS_PER_GALLON float = 3.78541
+
+const FL_OZ_PER_ML float = 0.033814
+const FL_OZ_PER_LITER float = 33.814
+const CUPS_PER_LITER float = 4.22675
+const PINTS_PER_LITER float = 2.11338
+const QUARTS_PER_LITER float = 1.05669
+const GALLONS_PER_LITER float = 0.264172

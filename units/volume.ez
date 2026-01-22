@@ -1,0 +1,158 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: volume.ez
+* File Desc: Functions for converting between volume units (liters, mL, gallons, quarts, pints, cups, fl oz)
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+
+module units
+
+/*********************************
+METRIC TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
+do convert_milliliter_to_liter(val float) -> float {
+	return val / ML_PER_LITER
+}
+
+do convert_liter_to_milliliter(val float) -> float {
+	return val * ML_PER_LITER
+}
+
+do convert_liter_to_cubic_meter(val float) -> float {
+	return val / LITERS_PER_CUBIC_METER
+}
+
+do convert_cubic_meter_to_liter(val float) -> float {
+	return val * LITERS_PER_CUBIC_METER
+}
+
+
+/*********************************
+IMPERIAL TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_fluid_ounce_to_cup(val float) -> float {
+	return val / FL_OZ_PER_CUP
+}
+
+do convert_cup_to_fluid_ounce(val float) -> float {
+	return val * FL_OZ_PER_CUP
+}
+
+do convert_cup_to_pint(val float) -> float {
+	return val / CUPS_PER_PINT
+}
+
+do convert_pint_to_cup(val float) -> float {
+	return val * CUPS_PER_PINT
+}
+
+do convert_pint_to_quart(val float) -> float {
+	return val / PINTS_PER_QUART
+}
+
+do convert_quart_to_pint(val float) -> float {
+	return val * PINTS_PER_QUART
+}
+
+do convert_quart_to_gallon(val float) -> float {
+	return val / QUARTS_PER_GALLON
+}
+
+do convert_gallon_to_quart(val float) -> float {
+	return val * QUARTS_PER_GALLON
+}
+
+do convert_fluid_ounce_to_gallon(val float) -> float {
+	return val / FL_OZ_PER_GALLON
+}
+
+do convert_gallon_to_fluid_ounce(val float) -> float {
+	return val * FL_OZ_PER_GALLON
+}
+
+
+/*********************************
+IMPERIAL TO METRIC CONVERSION FUNCTIONS
+*********************************/
+
+do convert_fluid_ounce_to_milliliter(val float) -> float {
+	return val * ML_PER_FL_OZ
+}
+
+do convert_fluid_ounce_to_liter(val float) -> float {
+	return val * ML_PER_FL_OZ / ML_PER_LITER
+}
+
+do convert_cup_to_milliliter(val float) -> float {
+	return val * ML_PER_CUP
+}
+
+do convert_cup_to_liter(val float) -> float {
+	return val * ML_PER_CUP / ML_PER_LITER
+}
+
+do convert_pint_to_liter(val float) -> float {
+	return val * LITERS_PER_PINT
+}
+
+do convert_quart_to_liter(val float) -> float {
+	return val * LITERS_PER_QUART
+}
+
+do convert_gallon_to_liter(val float) -> float {
+	return val * LITERS_PER_GALLON
+}
+
+do convert_gallon_to_milliliter(val float) -> float {
+	return val * LITERS_PER_GALLON * ML_PER_LITER
+}
+
+
+/*********************************
+METRIC TO IMPERIAL CONVERSION FUNCTIONS
+*********************************/
+
+do convert_milliliter_to_fluid_ounce(val float) -> float {
+	return val * FL_OZ_PER_ML
+}
+
+do convert_liter_to_fluid_ounce(val float) -> float {
+	return val * FL_OZ_PER_LITER
+}
+
+do convert_milliliter_to_cup(val float) -> float {
+	return val / ML_PER_CUP
+}
+
+do convert_liter_to_cup(val float) -> float {
+	return val * CUPS_PER_LITER
+}
+
+do convert_liter_to_pint(val float) -> float {
+	return val * PINTS_PER_LITER
+}
+
+do convert_liter_to_quart(val float) -> float {
+	return val * QUARTS_PER_LITER
+}
+
+do convert_liter_to_gallon(val float) -> float {
+	return val * GALLONS_PER_LITER
+}
+
+do convert_milliliter_to_gallon(val float) -> float {
+	return val / ML_PER_LITER * GALLONS_PER_LITER
+}
