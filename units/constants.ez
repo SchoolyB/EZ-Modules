@@ -121,3 +121,11 @@ const BYTES_PER_MIB float = 1048576.0
 const BYTES_PER_GIB float = 1073741824.0
 const BYTES_PER_TIB float = 1099511627776.0
 const BYTES_PER_PIB float = 1125899906842624.0
+
+/*********************************
+TEMPERATURE RELATED CONSTANTS
+*********************************/
+const CELSIUS_TO_FAHRENHEIT_MULTIPLIER float = 1.8
+const FAHRENHEIT_TO_CELSIUS_MULTIPLIER float = 0.555556
+const FAHRENHEIT_OFFSET float = 32.0
+const KELVIN_OFFSET float = 273.15

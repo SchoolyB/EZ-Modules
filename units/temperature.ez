@@ -1,0 +1,57 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: units
+* Module Desc: Utilities for converting between metric and imperial units
+*
+* File Name: temperature.ez
+* File Desc: Functions for converting between temperature units (Celsius, Fahrenheit, Kelvin)
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+
+module units
+
+/*********************************
+CELSIUS CONVERSION FUNCTIONS
+*********************************/
+
+do convert_celsius_to_fahrenheit(val float) -> float {
+	return val * CELSIUS_TO_FAHRENHEIT_MULTIPLIER + FAHRENHEIT_OFFSET
+}
+
+do convert_celsius_to_kelvin(val float) -> float {
+	return val + KELVIN_OFFSET
+}
+
+
+/*********************************
+FAHRENHEIT CONVERSION FUNCTIONS
+*********************************/
+
+do convert_fahrenheit_to_celsius(val float) -> float {
+	return (val - FAHRENHEIT_OFFSET) * FAHRENHEIT_TO_CELSIUS_MULTIPLIER
+}
+
+do convert_fahrenheit_to_kelvin(val float) -> float {
+	return (val - FAHRENHEIT_OFFSET) * FAHRENHEIT_TO_CELSIUS_MULTIPLIER + KELVIN_OFFSET
+}
+
+
+/*********************************
+KELVIN CONVERSION FUNCTIONS
+*********************************/
+
+do convert_kelvin_to_celsius(val float) -> float {
+	return val - KELVIN_OFFSET
+}
+
+do convert_kelvin_to_fahrenheit(val float) -> float {
+	return (val - KELVIN_OFFSET) * CELSIUS_TO_FAHRENHEIT_MULTIPLIER + FAHRENHEIT_OFFSET
+}
