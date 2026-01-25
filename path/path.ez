@@ -1,0 +1,37 @@
+module path
+
+
+import @strings, @os, @std
+
+
+//Joins each passed in string to create a valid file path based on OS
+do join(arr [string]) -> string{
+    temp p string
+
+    if os.CURRENT_OS == os.LINUX || os.CURRENT_OS == os.MAC_OS{
+        p = strings.join(arr, "/")
+    }or os.CURRENT_OS == os.WINDOWS {
+        p = strings.join(arr, "\\")
+    }
+
+    return p
+}
+
+//Extracts the base name from the passed in path(p) and returns it
+do get_base_name(p string) -> string {
+    temp arr [string]
+
+    if os.CURRENT_OS == os.LINUX || os.CURRENT_OS == os.MAC_OS {
+        arr = strings.split(p, "/")
+    } or os.CURRENT_OS == os.WINDOWS {
+        arr = strings.split(p, "\\")
+    }
+
+    return arr[len(arr) - 1]
+}
+
+do main(){
+   temp p = join({"this","is", "a", "path", "to","you.txt"})
+   temp foo = get_base_name(p)
+
+}
