@@ -1,0 +1,123 @@
+/*
+* EZ-Modules: A collection of helpful modules for the EZ programming language
+* Be aware these modules may one day be added into the EZ language stdlib and thus would be superseded by the stdlib version
+*
+* Module Name: slug
+* Module Desc: URL-safe string slugification utilities
+* Functions are accessed via the module name (e.g., slug.create())
+*
+* File Name: slug.ez
+* File Desc: Convert strings to URL-safe slugs
+*
+* Author: Marshall A Burns
+* GitHub: @SchoolyB
+* Repo: https://github.com/SchoolyB/EZ-Modules
+*
+* Copyright (c) 2026 Marshall Burns
+* Licensed under the MIT License
+*/
+
+module slug
+
+import @strings, @std
+
+const DEFAULT_SEPARATOR string = "-"
+const ALLOWED_CHARS string = "abcdefghijklmnopqrstuvwxyz0123456789"
+
+//Checks if a character(c) is allowed in a slug
+private do is_allowed_char(c string) -> bool {
+    return strings.contains(ALLOWED_CHARS, c)
+}
+
+//Converts a string(s) to a URL slug using the (-) separator
+do create(s string) -> string {
+    return create_with_separator(s, DEFAULT_SEPARATOR)
+}
+
+//Converts a string to a URL slug using custom separator
+do create_with_separator(s string, sep string) -> string {
+    temp lower string = strings.lower(s)
+
+    temp result string = ""
+    temp lastSep bool = true
+
+    temp i int = 0
+    as_long_as i < len(lower) {
+        temp c string = strings.char_at(lower, i)
+
+        if is_allowed_char(c) == true {
+            result = result + c
+            lastSep = false
+        } or c == " " || c == "-" || c == "_" || c == "." || c == "/" {
+            if !lastSep {
+                result = result + sep
+                lastSep = true
+            }
+        }
+
+        i = i + 1
+    }
+
+    if len(result) > 0 && strings.ends_with(result, sep) {
+        result = strings.substring(result, 0, len(result) - len(sep))
+    }
+
+    return result
+}
+
+//Converts a string(s) to a slug using underscores
+do create_with_underscore(s string) -> string {
+    return create_with_separator(s, "_")
+}
+
+//Checks if a string(s) is already a valid slug
+do is_valid(s string) -> bool {
+    if len(s) == 0 {
+        return false
+    }
+
+    temp i int = 0
+    as_long_as i < len(s) {
+        temp c string = strings.char_at(s, i)
+        if !is_allowed_char(c) && c != "-" {
+            return false
+        }
+        i = i + 1
+    }
+
+    if strings.starts_with(s, "-") || strings.ends_with(s, "-") {
+        return false
+    }
+    if strings.contains(s, "--") {
+        return false
+    }
+
+    return true
+}
+
+//Checks if a string is a valid slug with custom separator
+do is_valid_with_separator(s string, sep string) -> bool {
+    if len(s) == 0 {
+        return false
+    }
+
+    temp i int = 0
+    as_long_as i < len(s) {
+        temp c string = strings.char_at(s, i)
+        if !is_allowed_char(c) && c != sep {
+            return false
+        }
+
+        i = i + 1
+    }
+
+    //Check for leading/trailing/consecutive separators
+    if strings.starts_with(s, sep) || strings.ends_with(s, sep) {
+        return false
+    }
+    if strings.contains(s, "${sep}${sep}") {
+        return false
+    }
+
+    return true
+}
