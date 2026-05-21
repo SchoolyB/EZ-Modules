@@ -28,7 +28,7 @@ import "relative/path/to/path"
 
 ```ez
 // Create a path from segments (uses correct separator for OS)
-temp filePath string = path.join({"home", "user", "documents", "file.txt"})
+mut filePath string = path.join({"home", "user", "documents", "file.txt"})
 // Unix:    "home/user/documents/file.txt"
 // Windows: "home\user\documents\file.txt"
 ```
@@ -36,17 +36,17 @@ temp filePath string = path.join({"home", "user", "documents", "file.txt"})
 ### Extracting Path Components
 
 ```ez
-temp p string = "/home/user/documents/report.pdf"
+mut p string = "/home/user/documents/report.pdf"
 
-temp base string = path.get_base_name(p)    // "report.pdf"
-temp dir string = path.get_dir_name(p)      // "/home/user/documents"
-temp ext string = path.get_extension(p)     // ".pdf"
+mut base string = path.get_base_name(p)    // "report.pdf"
+mut dir string = path.get_dir_name(p)      // "/home/user/documents"
+mut ext string = path.get_extension(p)     // ".pdf"
 ```
 
 ### Parsing Paths
 
 ```ez
-temp info path.PathInfo = path.parse("/home/user/file.txt")
+mut info path.PathInfo = path.parse("/home/user/file.txt")
 
 std.println(info.dir)   // "/home/user"
 std.println(info.base)  // "file.txt"
@@ -57,32 +57,32 @@ std.println(info.ext)   // ".txt"
 ### Working with Extensions
 
 ```ez
-temp p string = "/home/user/document.txt"
+mut p string = "/home/user/document.txt"
 
 // Check extension
-temp extToCheck string = "txt"
-temp hasTxt bool = path.has_extension(p, extToCheck)  // true
+mut extToCheck string = "txt"
+mut hasTxt bool = path.has_extension(p, extToCheck)  // true
 
 // Change extension
-temp newExt string = "md"
-temp newPath string = path.change_extension(p, newExt)  // "/home/user/document.md"
+mut newExt string = "md"
+mut newPath string = path.change_extension(p, newExt)  // "/home/user/document.md"
 
 // Remove extension
-temp noExt string = path.strip_extension(p)  // "/home/user/document"
+mut noExt string = path.strip_extension(p)  // "/home/user/document"
 ```
 
 ### Checking Path Properties
 
 ```ez
-temp absolute bool = path.is_absolute("/usr/bin")     // true (Unix)
-temp relative bool = path.is_absolute("docs/file")   // false
+mut absolute bool = path.is_absolute("/usr/bin")     // true (Unix)
+mut relative bool = path.is_absolute("docs/file")   // false
 ```
 
 ### Platform Detection
 
 ```ez
-temp sep string = path.separator()    // "/" on Unix, "\" on Windows
-temp delim string = path.delimiter()  // ":" on Unix, ";" on Windows (for PATH)
+mut sep string = path.separator()    // "/" on Unix, "\" on Windows
+mut delim string = path.delimiter()  // ":" on Unix, ";" on Windows (for PATH)
 ```
 
 ## API Reference

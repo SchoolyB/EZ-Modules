@@ -14,25 +14,25 @@ import "relative/path/to/color"
 ### RGB to Hex
 
 ```ez
-temp hex = color.color_rgb_to_hex(255, 128, 0)  // Returns "FF8000"
+mut hex = color.color_rgb_to_hex(255, 128, 0)  // Returns "FF8000"
 ```
 
 ### Hex to RGB
 
 ```ez
-temp r, g, b = color.color_hex_to_rgb("FF8000")  // Returns 255, 128, 0
+mut r, g, b = color.color_hex_to_rgb("FF8000")  // Returns 255, 128, 0
 ```
 
 ### Byte to Hex
 
 ```ez
-temp high, low = color.color_byte_to_hex(255)  // Returns 'F', 'F'
+mut high, low = color.color_byte_to_hex(255)  // Returns 'F', 'F'
 ```
 
 ### Hex to Byte
 
 ```ez
-temp byte = color.color_hex_to_byte('F', 'F')  // Returns 255
+mut byte = color.color_hex_to_byte('F', 'F')  // Returns 255
 ```
 
 ## API Reference

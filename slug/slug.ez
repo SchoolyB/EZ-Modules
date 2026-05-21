@@ -16,10 +16,7 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-
-module slug
-
-import @strings, @std
+import @strings
 
 const DEFAULT_SEPARATOR string = "-"
 const ALLOWED_CHARS string = "abcdefghijklmnopqrstuvwxyz0123456789"
@@ -36,21 +33,21 @@ do create(s string) -> string {
 
 //Converts a string to a URL slug using custom separator
 do create_with_separator(s string, sep string) -> string {
-    temp lower string = strings.lower(s)
+    mut lower string = strings.to_lower(s)
 
-    temp result string = ""
-    temp lastSep bool = true
+    mut result string = ""
+    mut lastSep bool = true
 
-    temp i int = 0
+    mut i int = 0
     as_long_as i < len(lower) {
-        temp c string = strings.char_at(lower, i)
+        mut c string = strings.slice(lower, i, i + 1)
 
         if is_allowed_char(c) == true {
-            result = result + c
+            result = "${result}${c}"
             lastSep = false
         } or c == " " || c == "-" || c == "_" || c == "." || c == "/" {
             if !lastSep {
-                result = result + sep
+                result = "${result}${sep}"
                 lastSep = true
             }
         }
@@ -59,7 +56,7 @@ do create_with_separator(s string, sep string) -> string {
     }
 
     if len(result) > 0 && strings.ends_with(result, sep) {
-        result = strings.substring(result, 0, len(result) - len(sep))
+        result = strings.slice(result, 0, len(result) - len(sep))
     }
 
     return result
@@ -76,9 +73,9 @@ do is_valid(s string) -> bool {
         return false
     }
 
-    temp i int = 0
+    mut i int = 0
     as_long_as i < len(s) {
-        temp c string = strings.char_at(s, i)
+        mut c string = strings.slice(s, i, i + 1)
         if !is_allowed_char(c) && c != "-" {
             return false
         }
@@ -101,9 +98,9 @@ do is_valid_with_separator(s string, sep string) -> bool {
         return false
     }
 
-    temp i int = 0
+    mut i int = 0
     as_long_as i < len(s) {
-        temp c string = strings.char_at(s, i)
+        mut c string = strings.slice(s, i, i + 1)
         if !is_allowed_char(c) && c != sep {
             return false
         }

@@ -16,8 +16,6 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-module style
-
 const STYLE_FG_BLACK string = "\x1b[30m"
 const STYLE_FG_RED string = "\x1b[31m"
 const STYLE_FG_GREEN string = "\x1b[32m"

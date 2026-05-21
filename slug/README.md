@@ -37,26 +37,26 @@ import "relative/path/to/slug"
 
 ```ez
 // Basic slugification
-temp title string = "My Awesome Blog Post!"
-temp urlSlug string = slug.make(title)  // "my-awesome-blog-post"
+mut title string = "My Awesome Blog Post!"
+mut urlSlug string = slug.make(title)  // "my-awesome-blog-post"
 
 // With custom separator
-temp underscored string = slug.create_with_separator(title, "_")  // "my_awesome_blog_post"
+mut underscored string = slug.create_with_separator(title, "_")  // "my_awesome_blog_post"
 
 // Shorthand for underscore separator
-temp snake string = slug.create_with_underscore(title)  // "my_awesome_blog_post"
+mut snake string = slug.create_with_underscore(title)  // "my_awesome_blog_post"
 ```
 
 ### Validating Slugs
 
 ```ez
 // Check if a string is already a valid slug
-temp valid bool = slug.is_valid("hello-world")      // true
-temp invalid bool = slug.is_valid("Hello World!")   // false
-temp bad bool = slug.is_valid("--double-dash")      // false
+mut valid bool = slug.is_valid("hello-world")      // true
+mut invalid bool = slug.is_valid("Hello World!")   // false
+mut bad bool = slug.is_valid("--double-dash")      // false
 
 // Validate with custom separator
-temp validUnderscore bool = slug.is_valid_with_separator("hello_world", "_")  // true
+mut validUnderscore bool = slug.is_valid_with_separator("hello_world", "_")  // true
 ```
 
 ## API Reference
@@ -88,23 +88,23 @@ temp validUnderscore bool = slug.is_valid_with_separator("hello_world", "_")  //
 ### Blog Post URLs
 
 ```ez
-temp postTitle string = "10 Tips for Better Code"
-temp postSlug string = slug.make(postTitle)
+mut postTitle string = "10 Tips for Better Code"
+mut postSlug string = slug.make(postTitle)
 // URL: /blog/10-tips-for-better-code
 ```
 
 ### File Naming
 
 ```ez
-temp fileName string = "My Document (Final Version).txt"
-temp safeFileName string = slug.create_with_underscore(fileName) + ".txt"
+mut fileName string = "My Document (Final Version).txt"
+mut safeFileName string = slug.create_with_underscore(fileName) + ".txt"
 // Result: "my_document_final_version.txt"
 ```
 
 ### Validation Before Save
 
 ```ez
-temp userInput string = get_user_input()
+mut userInput string = get_user_input()
 if !slug.is_valid(userInput) {
     userInput = slug.make(userInput)
 }

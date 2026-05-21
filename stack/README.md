@@ -36,7 +36,7 @@ Then, in the file you plan on using the `stack` modules functions or constants w
 
 import "relative/path/to/stack"
 
-temp myStack [stack.StackItem]
+mut myStack [stack.StackItem]
 ```
 
 ### Pushing Items
@@ -53,11 +53,11 @@ stack.push_bool(myStack, true)
 ### Popping Items
 
 ```ez
-temp item = stack.pop(myStack)  // Returns true (last pushed)
+mut item = stack.pop(myStack)  // Returns true (last pushed)
 
 // Extract the value based on type
 if stack.item_is_bool(item) {
-    temp value = stack.get_bool(item)
+    mut value = stack.get_bool(item)
     println("Got bool: ${value}")
 }
 ```
@@ -66,14 +66,14 @@ if stack.item_is_bool(item) {
 
 ```ez
 // View top item without removing it
-temp top = stack.peek(myStack)
+mut top = stack.peek(myStack)
 ```
 
 ### Other Operations
 
 ```ez
-temp empty = stack.is_empty(myStack)  // Check if empty
-temp count = stack.size(myStack)       // Get item count
+mut empty = stack.is_empty(myStack)  // Check if empty
+mut count = stack.size(myStack)       // Get item count
 stack.clear(myStack)                   // Remove all items
 ```
 

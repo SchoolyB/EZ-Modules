@@ -14,57 +14,57 @@ import "relative/path/to/units"
 ### Length Conversions
 
 ```ez
-temp km = units.convert_mile_to_kilometer(5.0)      // Returns 8.04672
-temp feet = units.convert_meter_to_feet(10.0)       // Returns 32.8084
-temp inches = units.convert_centimeter_to_inch(2.54) // Returns 1.0
+mut km = units.convert_mile_to_kilometer(5.0)      // Returns 8.04672
+mut feet = units.convert_meter_to_feet(10.0)       // Returns 32.8084
+mut inches = units.convert_centimeter_to_inch(2.54) // Returns 1.0
 ```
 
 ### Area Conversions
 
 ```ez
-temp sqm = units.convert_sq_foot_to_sq_meter(100.0)  // Returns 9.2903
-temp acres = units.convert_hectare_to_acre(1.0)      // Returns 2.47105
-temp area = units.calculate_circle_area(5.0)         // Returns 78.5398
+mut sqm = units.convert_sq_foot_to_sq_meter(100.0)  // Returns 9.2903
+mut acres = units.convert_hectare_to_acre(1.0)      // Returns 2.47105
+mut area = units.calculate_circle_area(5.0)         // Returns 78.5398
 ```
 
 ### Weight Conversions
 
 ```ez
-temp kg = units.convert_pound_to_kilogram(150.0)    // Returns 68.0388
-temp oz = units.convert_gram_to_ounce(100.0)        // Returns 3.5274
-temp tons = units.convert_kilogram_to_metric_ton(1000.0) // Returns 1.0
+mut kg = units.convert_pound_to_kilogram(150.0)    // Returns 68.0388
+mut oz = units.convert_gram_to_ounce(100.0)        // Returns 3.5274
+mut tons = units.convert_kilogram_to_metric_ton(1000.0) // Returns 1.0
 ```
 
 ### Temperature Conversions
 
 ```ez
-temp f = units.convert_celsius_to_fahrenheit(100.0)  // Returns 212.0
-temp c = units.convert_fahrenheit_to_celsius(32.0)   // Returns 0.0
-temp k = units.convert_celsius_to_kelvin(0.0)        // Returns 273.15
+mut f = units.convert_celsius_to_fahrenheit(100.0)  // Returns 212.0
+mut c = units.convert_fahrenheit_to_celsius(32.0)   // Returns 0.0
+mut k = units.convert_celsius_to_kelvin(0.0)        // Returns 273.15
 ```
 
 ### Volume Conversions
 
 ```ez
-temp liters = units.convert_gallon_to_liter(1.0)     // Returns 3.78541
-temp cups = units.convert_liter_to_cup(1.0)          // Returns 4.22675
-temp ml = units.convert_fluid_ounce_to_milliliter(8.0) // Returns 236.588
+mut liters = units.convert_gallon_to_liter(1.0)     // Returns 3.78541
+mut cups = units.convert_liter_to_cup(1.0)          // Returns 4.22675
+mut ml = units.convert_fluid_ounce_to_milliliter(8.0) // Returns 236.588
 ```
 
 ### Speed Conversions
 
 ```ez
-temp kmh = units.convert_miles_per_hour_to_kilometers_per_hour(60.0) // Returns 96.5604
-temp knots = units.convert_kilometers_per_hour_to_knot(100.0)        // Returns 53.9957
-temp mps = units.convert_feet_per_second_to_meters_per_second(10.0)  // Returns 3.048
+mut kmh = units.convert_miles_per_hour_to_kilometers_per_hour(60.0) // Returns 96.5604
+mut knots = units.convert_kilometers_per_hour_to_knot(100.0)        // Returns 53.9957
+mut mps = units.convert_feet_per_second_to_meters_per_second(10.0)  // Returns 3.048
 ```
 
 ### Data Storage Conversions
 
 ```ez
-temp gb = units.convert_megabyte_to_gigabyte(1000.0)  // Returns 1.0 (SI)
-temp gib = units.convert_mebibyte_to_gibibyte(1024.0) // Returns 1.0 (IEC)
-temp kb = units.convert_kibibyte_to_kilobyte(1.0)     // Returns 1.024
+mut gb = units.convert_megabyte_to_gigabyte(1000.0)  // Returns 1.0 (SI)
+mut gib = units.convert_mebibyte_to_gibibyte(1024.0) // Returns 1.0 (IEC)
+mut kb = units.convert_kibibyte_to_kilobyte(1.0)     // Returns 1.024
 ```
 
 ## API Reference

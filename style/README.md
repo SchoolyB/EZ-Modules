@@ -14,7 +14,7 @@ import "relative/path/to/style"
 ### Text Styling
 
 ```ez
-temp text = "Hello"
+mut text = "Hello"
 style.style_make_bold(text)      // Makes text bold
 style.style_make_italic(text)    // Makes text italic
 style.style_make_underline(text) // Makes text underlined
@@ -26,7 +26,7 @@ style.style_make_reverse(text)   // Swaps foreground/background colors
 ### Foreground Colors
 
 ```ez
-temp text = "Hello"
+mut text = "Hello"
 style.style_make_red(text)          // Red text
 style.style_make_green(text)        // Green text
 style.style_make_blue(text)         // Blue text
@@ -36,7 +36,7 @@ style.style_make_bright_yellow(text) // Bright yellow text
 ### Background Colors
 
 ```ez
-temp text = "Hello"
+mut text = "Hello"
 style.style_make_bg_red(text)          // Red background
 style.style_make_bg_green(text)        // Green background
 style.style_make_bg_bright_cyan(text)  // Bright cyan background

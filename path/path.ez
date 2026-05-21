@@ -16,10 +16,7 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-
-module path
-
-import @strings, @os, @io, @std, @arrays
+import @strings, @os, @io, @arrays
 
 const PathInfo struct {
     dir string
@@ -30,7 +27,7 @@ const PathInfo struct {
 
 //Returns the OS specific path separator
 do separator() -> string {
-    if os.CURRENT_OS == os.LINUX || os.CURRENT_OS == os.MAC_OS {
+    if os.current_os() == os.LINUX || os.current_os() == os.MAC_OS {
         return "/"
     }
     return "\\"
@@ -38,7 +35,7 @@ do separator() -> string {
 
 //Returns the OS specific path list delimiter
 do delimiter() -> string {
-    if os.CURRENT_OS == os.LINUX || os.CURRENT_OS == os.MAC_OS {
+    if os.current_os() == os.LINUX || os.current_os() == os.MAC_OS {
         return ":"
     }
     return ";"
@@ -51,32 +48,32 @@ do join(arr [string]) -> string {
 
 //Extracts the base name from the passed in path(p) and returns it
 do get_base_name(p string) -> string {
-    temp arr [string] = strings.split(p, separator())
+    mut arr [string] = strings.split(p, separator())
     return arr[len(arr) - 1]
 }
 
 //Extracts the directory name from the passed in path(p) and returns it
 do get_dir_name(p string) -> string {
-    temp sep string = separator()
-    temp arr [string] = strings.split(p, sep)
+    mut sep string = separator()
+    mut arr [string] = strings.split(p, sep)
 
     if len(arr) <= 1 {
         return ""
     }
 
-    temp dir_parts [string] = arrays.slice(arr, 0, len(arr) - 1)
+    mut dir_parts [string] = arrays.slice(arr, 0, len(arr) - 1)
     return strings.join(dir_parts, sep)
 }
 
 //Returns the file extension including the dot (e.g., ".txt")
 //Returns empty string if no extension found
 do get_extension(p string) -> string {
-    temp base string = get_base_name(p)
+    mut base string = get_base_name(p)
 
-    temp last_dot int = -1
-    temp i int = len(base) - 1
+    mut last_dot int = -1
+    mut i int = len(base) - 1
     as_long_as i >= 0 {
-        if strings.char_at(base, i) == "." {
+        if strings.slice(base, i, i + 1) == "." {
             last_dot = i
             break
         }
@@ -87,7 +84,7 @@ do get_extension(p string) -> string {
         return ""
     }
 
-    return strings.substring(base, last_dot, len(base))
+    return strings.slice(base, last_dot, len(base))
 }
 
 //Checks if the passed in path(p) is absolute
@@ -96,14 +93,14 @@ do is_absolute(p string) -> bool {
         return false
     }
 
-    if os.CURRENT_OS == os.LINUX || os.CURRENT_OS == os.MAC_OS {
+    if os.current_os() == os.LINUX || os.current_os() == os.MAC_OS {
         return strings.starts_with(p, "/")
     }
 
     //Windows: check for drive letter (C:\) or (\\)
     if len(p) >= 3 {
-        temp second_char string = strings.char_at(p, 1)
-        temp third_char string = strings.char_at(p, 2)
+        mut second_char string = strings.slice(p, 1, 2)
+        mut third_char string = strings.slice(p, 2, 3)
         if second_char == ":" && third_char == "\\" {
             return true
         }
@@ -119,35 +116,35 @@ do is_absolute(p string) -> bool {
 
 //Removes the extension from the path(p)
 do strip_extension(p string) -> string {
-    temp ext string = get_extension(p)
+    mut ext string = get_extension(p)
 
     if ext == "" {
         return p
     }
 
-    return strings.substring(p, 0, len(p) - len(ext))
+    return strings.slice(p, 0, len(p) - len(ext))
 }
 
 //Checks if the path(p) has the passed extension(ext)
 do has_extension(p string, &ext string) -> bool {
-    temp currentExtension string = get_extension(p)
+    mut currentExtension string = get_extension(p)
 
     if len(ext) > 0 && !strings.starts_with(ext, ".") {
         ext = ".${ext}"
     }
 
-    return strings.lower(currentExtension) == strings.lower(ext)
+    return strings.to_lower(currentExtension) == strings.to_lower(ext)
 }
 
 //Changes the extension of the path to newExtension
 do change_extension(p string, &newExtension string) -> string {
-    temp base string = strip_extension(p)
+    mut base string = strip_extension(p)
 
     if len(newExtension) > 0 && !strings.starts_with(newExtension, ".") {
         newExtension = ".${newExtension}"
     }
 
-    return base + newExtension
+    return "${base}${newExtension}"
 }
 
 //Splits the path into directory and base name
@@ -157,10 +154,9 @@ do split(p string) -> (string, string) {
 
 //Parses a path into its components and returns a PathInfo struct
 do parse(p string) -> PathInfo {
-    temp info = new(PathInfo)
-    info.dir = get_dir_name(p)
-    info.base = get_base_name(p)
-    info.ext = get_extension(p)
-    info.name = strip_extension(info.base)
-    return info
+    mut dir string = get_dir_name(p)
+    mut base string = get_base_name(p)
+    mut ext string = get_extension(p)
+    mut name string = strip_extension(base)
+    return PathInfo{dir: dir, base: base, name: name, ext: ext}
 }

@@ -15,25 +15,23 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-module color
-
 import @maps
 
 //Converts the passed in byte(b)passed as type u8...to two hexidecimal values as type char
 do color_byte_to_hex(b u8) -> (char, char) {
-	temp high = b/16
-	temp low = b % 16
+	mut high = b/16
+	mut low = b % 16
 
 	return HexidecimalMap[high], HexidecimalMap[low]
 }
 
 //Takes 2 hexidecimal values as type char(high, low) and returns the byte equivalent as type u8
 do color_hex_to_byte(high, low char) -> u8 {
-    temp keys = maps.keys(HexidecimalMap)
+    mut keys = maps.get_keys(HexidecimalMap)
 
-    temp k u8
-    temp highBytes u8
-    temp lowBytes u8
+    mut k u8
+    mut highBytes u8
+    mut lowBytes u8
 
     for_each k in keys {
         if HexidecimalMap[k] == high {
@@ -49,23 +47,23 @@ do color_hex_to_byte(high, low char) -> u8 {
 
 //Converts 3 passed in u8 values(r,g,b) and returns the hexidecimal equivalant as a string
 do color_rgb_to_hex(r,g,b u8) -> string {
-    temp rHigh, rLow = color_byte_to_hex(r)
-    temp gHigh, gLow = color_byte_to_hex(g)
-    temp bHigh, bLow = color_byte_to_hex(b)
+    mut rHigh, rLow = color_byte_to_hex(r)
+    mut gHigh, gLow = color_byte_to_hex(g)
+    mut bHigh, bLow = color_byte_to_hex(b)
 
     return "${rHigh}${rLow}${gHigh}${gLow}${bHigh}${bLow}"
 }
 
 //Takes the passed full hexideciaml value(hex) of type string and returns 3 byte representations(r,g,b)
 do color_hex_to_rgb(hex string) -> (u8,u8,u8){
-     temp r = color_hex_to_byte(hex[0], hex[1])
-     temp g = color_hex_to_byte(hex[2], hex[3])
-     temp b = color_hex_to_byte(hex[4], hex[5])
+     mut r = color_hex_to_byte(hex[0], hex[1])
+     mut g = color_hex_to_byte(hex[2], hex[3])
+     mut b = color_hex_to_byte(hex[4], hex[5])
 
      return r, g, b
  }
 
-private const HexidecimalMap map[u8:char] = {
+private mut HexidecimalMap map[u8:char] = {
 	0:'0',
 	1:'1',
 	2:'2',

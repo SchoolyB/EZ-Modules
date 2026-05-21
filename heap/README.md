@@ -70,7 +70,7 @@ Then, in the file you plan on using the `heap` modules functions or constants wr
 
 import "relative/path/to/heap"
 
-temp yourHeapVariable [heap.HeapItem]
+mut yourHeapVariable [heap.HeapItem]
 ```
 
 ### Pushing Items
@@ -86,12 +86,12 @@ heap.push_int(tasks, 2, 42)
 ### Popping Items
 
 ```ez
-temp item = heap.pop(tasks)  // Returns "Urgent task" (priority 1)
+mut item = heap.pop(tasks)  // Returns "Urgent task" (priority 1)
 
 // Extract the value
 if heap.item_is_string(item) {
-    temp value = heap.get_string(item)
-    temp priority = heap.get_priority(item)
+    mut value = heap.get_string(item)
+    mut priority = heap.get_priority(item)
     println("Got: ${value} with priority ${priority}")
 }
 ```
@@ -99,9 +99,9 @@ if heap.item_is_string(item) {
 ### Other Operations
 
 ```ez
-temp top = heap.peek(tasks)      // View top without removing
-temp empty = heap.is_empty(tasks) // Check if empty
-temp count = heap.size(tasks)     // Get item count
+mut top = heap.peek(tasks)      // View top without removing
+mut empty = heap.is_empty(tasks) // Check if empty
+mut count = heap.size(tasks)     // Get item count
 ```
 
 ## API Reference

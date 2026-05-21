@@ -16,7 +16,6 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-module stack
 import @arrays
 
 const StackItem struct {
@@ -36,19 +35,17 @@ const Variant struct {
 //===============================
 
 private do make_variant(strVal string = "", intVal int = 0, floatVal float = 0.0, boolVal bool = false, typeFlag [int] = {0, 0, 0, 0}) -> Variant {
-	temp v = new(Variant)
-	v.stringValue = strVal
-	v.intValue = intVal
-	v.floatValue = floatVal
-	v.boolValue = boolVal
-	v.type = typeFlag
-	return v
+	return Variant{
+		stringValue: strVal,
+		intValue: intVal,
+		floatValue: floatVal,
+		boolValue: boolVal,
+		type: typeFlag
+	}
 }
 
 private do make_new_stack_item(v Variant) -> StackItem {
-	temp item = new(StackItem)
-	item.value = v
-	return copy(item)
+	return StackItem{value: v}
 }
 
 
@@ -58,29 +55,29 @@ private do make_new_stack_item(v Variant) -> StackItem {
 
 //Push a string value onto the stack
 do push_string(&stack [StackItem], value string) {
-	temp v = make_variant(strVal: value, typeFlag: {1, 0, 0, 0})
-	temp item = make_new_stack_item(v)
+	mut v = make_variant(value, 0, 0.0, false, {1, 0, 0, 0})
+	mut item = make_new_stack_item(v)
 	arrays.append(stack, item)
 }
 
 //Push an int value onto the stack
 do push_int(&stack [StackItem], value int) {
-	temp v = make_variant(intVal: value, typeFlag: {0, 1, 0, 0})
-	temp item = make_new_stack_item(v)
+	mut v = make_variant("", value, 0.0, false, {0, 1, 0, 0})
+	mut item = make_new_stack_item(v)
 	arrays.append(stack, item)
 }
 
 //Push a float value onto the stack
 do push_float(&stack [StackItem], value float) {
-	temp v = make_variant(floatVal: value, typeFlag: {0, 0, 1, 0})
-	temp item = make_new_stack_item(v)
+	mut v = make_variant("", 0, value, false, {0, 0, 1, 0})
+	mut item = make_new_stack_item(v)
 	arrays.append(stack, item)
 }
 
 //Push a bool value onto the stack
 do push_bool(&stack [StackItem], value bool) {
-	temp v = make_variant(boolVal: value, typeFlag: {0, 0, 0, 1})
-	temp item = make_new_stack_item(v)
+	mut v = make_variant("", 0, 0.0, value, {0, 0, 0, 1})
+	mut item = make_new_stack_item(v)
 	arrays.append(stack, item)
 }
 
@@ -88,12 +85,12 @@ do push_bool(&stack [StackItem], value bool) {
 //Returns the StackItem that was removed
 do pop(&stack [StackItem]) -> StackItem {
 	if len(stack) == 0 {
-		return new(StackItem)
+		return StackItem{value: Variant{stringValue: "", intValue: 0, floatValue: 0.0, boolValue: false, type: {0, 0, 0, 0}}}
 	}
 
-	temp last_index = len(stack) - 1
-	temp result = stack[last_index]
-	arrays.pop(stack)
+	mut last_index = len(stack) - 1
+	mut result = stack[last_index]
+	mut _ = arrays.remove_last(stack)
 	return result
 }
 
@@ -101,7 +98,7 @@ do pop(&stack [StackItem]) -> StackItem {
 //Returns the StackItem at the top
 do peek(stack [StackItem]) -> StackItem {
 	if len(stack) == 0 {
-		return new(StackItem)
+		return StackItem{value: Variant{stringValue: "", intValue: 0, floatValue: 0.0, boolValue: false, type: {0, 0, 0, 0}}}
 	}
 
 	return stack[len(stack) - 1]
@@ -120,7 +117,7 @@ do size(stack [StackItem]) -> int {
 //Clear all items from the stack
 do clear(&stack [StackItem]) {
 	as_long_as len(stack) > 0 {
-		arrays.pop(stack)
+		mut _ = arrays.remove_last(stack)
 	}
 }
 

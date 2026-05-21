@@ -16,10 +16,9 @@
 * Copyright (c) 2026 Marshall Burns
 * Licensed under the MIT License
 */
-module heap
-import @arrays, @std
+import @arrays
 
-temp Heap [HeapItem]
+mut Heap [HeapItem] = {}
 
 const HeapItem struct {
 	priority int
@@ -39,22 +38,21 @@ const Variant struct {
 //===============================
 
 private do make_variant(strVal string = "", intVal int = 0, floatVal float = 0.0, boolVal bool = false, typeFlag [int] = {0, 0, 0, 0}) -> Variant {
-	temp v = new(Variant)
-	v.stringValue = strVal
-	v.intValue = intVal
-	v.floatValue = floatVal
-	v.boolValue = boolVal
-	v.type = typeFlag
-	return v
+	return Variant{
+		stringValue: strVal,
+		intValue: intVal,
+		floatValue: floatVal,
+		boolValue: boolVal,
+		type: typeFlag
+	}
 }
 
 //Creates a new HeapItem with passed in priority(p) and Variant(v)
 private do make_new_heap_item(p int, v Variant) -> HeapItem {
-	temp item = new(HeapItem)
-
-	item.priority = p
-	item.value = v
-	return copy(item)
+	return HeapItem{
+		priority: p,
+		value: v
+	}
 }
 
 // Gets the parent index of a node at passed in index
@@ -85,14 +83,14 @@ private do right_child_index(index int) -> int {
 // Takes: the heap array, index of the newly inserted item
 private do bubble_up(&heap [HeapItem], &index int) {
     // Keep going until we reach the root (index 0) or find correct position
-    for j in range(0, 1) {
-        temp parentIndex = parent_index(index)
+    as_long_as index > 0 {
+        mut parentIndex = parent_index(index)
 
         // If current item's priority is LESS than parent's, swap them
         // (In a min-heap, smaller priorities bubble up to the top)
         if heap[index].priority < heap[parentIndex].priority {
             // Swap current with parent
-            temp tmp = heap[index]
+            mut tmp = heap[index]
             heap[index] = heap[parentIndex]
             heap[parentIndex] = tmp
 
@@ -114,27 +112,27 @@ private do bubble_up(&heap [HeapItem], &index int) {
 //
 // Takes: the heap array, index to start bubbling down from (usually 0 after pop)
 private do bubble_down(&heap [HeapItem], &index int) {
-    temp size = len(heap)
-    temp flag = true
+    mut heap_size = len(heap)
+    mut flag = true
 
     as_long_as flag == true {
-        temp smallest = index
-        temp left = left_child_index(index)
-        temp right = right_child_index(index)
+        mut smallest = index
+        mut left = left_child_index(index)
+        mut right = right_child_index(index)
 
         // Check if left child exists and is smaller than current smallest
-        if left < size && heap[left].priority < heap[smallest].priority {
+        if left < heap_size && heap[left].priority < heap[smallest].priority {
             smallest = left
         }
 
         // Check if right child exists and is smaller than current smallest
-        if right < size && heap[right].priority < heap[smallest].priority {
+        if right < heap_size && heap[right].priority < heap[smallest].priority {
             smallest = right
         }
 
         // If smallest is not the current node, swap and continue
         if smallest != index {
-            temp tmp = heap[index]
+            mut tmp = heap[index]
             heap[index] = heap[smallest]
             heap[smallest] = tmp
             index = smallest
@@ -152,56 +150,61 @@ private do bubble_down(&heap [HeapItem], &index int) {
 
 //Push a string value onto the heap with given priority (lower priority = comes out first)
 do push_string(&heap [HeapItem], p int, value string) {
-	temp v = make_variant(strVal: value, typeFlag: {1, 0, 0, 0})
-	temp item = make_new_heap_item(p, v)
+	mut v = make_variant(value, 0, 0.0, false, {1, 0, 0, 0})
+	mut item = make_new_heap_item(p, v)
 	arrays.append(heap, item)
-	bubble_up(heap, len(heap) - 1)
+	mut idx int = len(heap) - 1
+	bubble_up(heap, idx)
 }
 
 //Push an int value onto the heap with given priority
 do push_int(&heap [HeapItem], p int, value int) {
-	temp v = make_variant(intVal: value, typeFlag: {0, 1, 0, 0})
-	temp item = make_new_heap_item(p, v)
+	mut v = make_variant("", value, 0.0, false, {0, 1, 0, 0})
+	mut item = make_new_heap_item(p, v)
 	arrays.append(heap, item)
-	bubble_up(heap, len(heap) - 1)
+	mut idx int = len(heap) - 1
+	bubble_up(heap, idx)
 }
 
 //Push a float value onto the heap with given priority
 do push_float(&heap [HeapItem], p int, value float) {
-	temp v = make_variant(floatVal: value, typeFlag: {0, 0, 1, 0})
-	temp item = make_new_heap_item(p, v)
+	mut v = make_variant("", 0, value, false, {0, 0, 1, 0})
+	mut item = make_new_heap_item(p, v)
 	arrays.append(heap, item)
-	bubble_up(heap, len(heap) - 1)
+	mut idx int = len(heap) - 1
+	bubble_up(heap, idx)
 }
 
 //Push a bool value onto the heap with given priority
 do push_bool(&heap [HeapItem], p int, value bool) {
-	temp v = make_variant(boolVal: value, typeFlag: {0, 0, 0, 1})
-	temp item = make_new_heap_item(p, v)
+	mut v = make_variant("", 0, 0.0, value, {0, 0, 0, 1})
+	mut item = make_new_heap_item(p, v)
 	arrays.append(heap, item)
-	bubble_up(heap, len(heap) - 1)
+	mut idx int = len(heap) - 1
+	bubble_up(heap, idx)
 }
 
 //Pops the highest-priority (lowest number) item from the passed in heap
 //Returns the HeapItem that was removed/popped
 do pop(&heap [HeapItem]) -> HeapItem {
     if len(heap) == 0 {
-        return new(HeapItem)
+        return HeapItem{priority: 0, value: Variant{stringValue: "", intValue: 0, floatValue: 0.0, boolValue: false, type: {0, 0, 0, 0}}}
     }
 
     // Save the root itme state
-    temp result = heap[0]
+    mut result = heap[0]
 
     //Move last item to root
-    temp last_index = len(heap) - 1
+    mut last_index = len(heap) - 1
     heap[0] = heap[last_index]
 
     // Remove last item
-    arrays.pop(heap)
+    mut _ = arrays.remove_last(heap)
 
     // Restore heap property by bubbling down
     if len(heap) > 0 {
-        bubble_down(heap, 0)
+        mut zero int = 0
+        bubble_down(heap, zero)
     }
 
     return result
@@ -211,7 +214,7 @@ do pop(&heap [HeapItem]) -> HeapItem {
 //Returns the HeapItem at the root of the heap
 do peek(heap [HeapItem]) -> HeapItem {
     if len(heap) == 0 {
-        return new(HeapItem)
+        return HeapItem{priority: 0, value: Variant{stringValue: "", intValue: 0, floatValue: 0.0, boolValue: false, type: {0, 0, 0, 0}}}
     }
 
     return heap[0]
@@ -291,8 +294,4 @@ do get_float(item HeapItem) -> float {
 // Extract bool value from HeapItem
 do get_bool(item HeapItem) -> bool {
     return item.value.boolValue
-}
-
-do main() {
-	push_string(Heap, 1, "test")
 }
